@@ -1,7 +1,7 @@
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { UsersRepository } from './users.repository';
+import { UserRepository } from './users.repository';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './user.entity';
 import { UserRole } from './user-roles.enum';
@@ -9,8 +9,8 @@ import { UserRole } from './user-roles.enum';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(UsersRepository)
-    private userRepository: UsersRepository,
+    @InjectRepository(UserRepository)
+    private userRepository: UserRepository,
   ) {}
 
   async createAdminUser(createUserDto: CreateUserDto): Promise<User> {
