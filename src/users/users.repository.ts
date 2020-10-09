@@ -6,11 +6,13 @@ import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import {
   ConflictException,
+  Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
 
 @EntityRepository(User)
-export class UsersRepository extends Repository<User> {
+@Injectable()
+export class UserRepository extends Repository<User> {
   async createUser(
     createUserDto: CreateUserDto,
     role: UserRole,
