@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { UserRepository } from './users.repository';
-import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
+import { UsersController } from './users.controller';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserRepository])],
-  controllers: [UsersController],
+  imports: [
+    TypeOrmModule.forFeature([UserRepository]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+  ],
   providers: [UsersService],
-  exports: [UsersService],
+  controllers: [UsersController],
 })
 export class UsersModule {}
